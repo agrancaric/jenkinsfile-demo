@@ -11,7 +11,7 @@ node {
   sh "gradle build"
 
   stage 'Tmp'
-  sh "echo ls -a"  
+  sh "ls -a"  
   
 
   }
