@@ -16,8 +16,8 @@ node {
   println $projectName  
 
   stage 'Deploy'
-  sh "cp \$(find build/libs -name ${projectName}*.jar) ${projectName}.jar"
-  sh "docker build -t agrancaric/java-${projectName) . --build-arg project_name=${projectName} --build-arg server_port=$serverPort"
+  sh "cp \$(find build/libs -name '$projectName*.jar') $projectName.jar"
+  sh "docker build -t agrancaric/java-$projectName . --build-arg project_name=$projectName --build-arg server_port=$serverPort"
 
   }
 
