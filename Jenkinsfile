@@ -13,6 +13,7 @@ node {
   stage 'Build'
   sh "gradle build"
   
+  println $projectName  
 
   stage 'Deploy'
   sh "cp \$(find build/libs -name '${projectName}*.jar') ${projectName}.jar"
