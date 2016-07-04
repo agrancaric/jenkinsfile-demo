@@ -1,5 +1,7 @@
-
 node {
+  def projectName = "jenkins-build-demo"
+  def serverPort = 8081
+  
   stage 'Checkout'
   checkout scm
   
@@ -10,13 +12,9 @@ node {
 
   stage 'Build'
   sh "gradle build"
-
   }
   stage 'Deploy'
-
-  def projectName = "jenkins-build-demo"
-  def serverPort = 8081
   
   sh "cp \$(find build/libs -name '*.jar') ${projectName}.jar"
-  sh "docker build -t agrancaric/java-$projectName . --build-arg project_name=$projectName --build-arg server_port=$serverPort"
+  sh "docker build --build-arg project_name=$projectName --build-arg server_port=$serverPort -t agrancaric/java-$projectName . " 
 }
