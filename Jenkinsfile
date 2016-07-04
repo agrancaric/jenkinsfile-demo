@@ -1,5 +1,3 @@
-def projectName = "jenkins-build-demo"
-def serverPort = 8081
 
 node {
   stage 'Checkout'
@@ -15,10 +13,10 @@ node {
 
   }
   stage 'Deploy'
- 
-  println $projectName
 
+  def projectName = "jenkins-build-demo"
+  def serverPort = 8081
+  
   sh "cp \$(find build/libs -name '*.jar') ${projectName}.jar"
   sh "docker build -t agrancaric/java-$projectName . --build-arg project_name=$projectName --build-arg server_port=$serverPort"
-
 }
